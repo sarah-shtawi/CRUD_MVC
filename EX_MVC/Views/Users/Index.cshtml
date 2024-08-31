@@ -1,0 +1,33 @@
+﻿@model List<User> 
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+<a asp-controller="Users" asp-action="Register" class="btn btn-success">  Register  </a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">IsActive</th>
+            <th scope="col">CreatedAt</th>
+            <th> Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach( var user in @Model)
+        {
+            if(user.IsActive == false)
+            {
+                <tr>
+                    <td> @user.Id </td>
+                    <td> @user.Name </td>
+                    <td> @user.IsActive </td>
+                    <td> @user.CreatedAt </td>
+                    <td> <a asp-controller="Users" asp-action="IsActive" asp-route-Id="@user.Id" class="btn btn-success" >  IsActive </a> </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
